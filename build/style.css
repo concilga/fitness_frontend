@@ -1,0 +1,209 @@
+* {
+  font-family: arial,sans-serif;
+  margin: 0;
+}
+
+body {
+  padding: 20px;
+  background: #465945;;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-page {
+  margin-top: 50px;
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo {
+  font-size: 25rem;
+  margin-bottom: 30px;
+}
+
+#logo-account {
+  font-size: 9rem;
+}
+
+.main-navbar {
+  border-bottom: white;
+  border-width: 2px;
+  color: white;
+}
+
+#icon {
+  text-decoration: none;
+  color: white;
+}
+
+.posts-page{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 30px;
+}
+
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+  width: auto;
+}
+
+.public-posts {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#login-navbar {
+  flex-grow: 1;
+  max-height: 10%;
+  min-height: 40px;
+  color: gray;
+  padding: 1em 0 0 1em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 2;
+  margin: 1em;
+}
+
+form input {
+  margin: 1em 0;
+  font-size: 1em;
+}
+
+form button {
+  padding: 1em 2em;
+  background-color: #59A9C2;
+  color: white;
+  border: none;
+  font-size: 1em;
+  transition: all 1s ease;
+  outline: none;
+}
+
+form button:hover {
+  background-color: #65878F;
+}
+
+a {
+  margin: 10px;
+}
+
+.account-page {
+  display: flex;
+  flex-direction: column;
+  background: #465945;
+  width: auto;
+  padding: 50px;
+}
+
+.account-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #465945;
+  color: white;
+  border: white;
+  border-style: ridge;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  height: fit-content;
+  width: 100%;
+}
+
+.account-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #465945;
+}
+
+#user-post-title {
+  justify-self: center;
+  color: white;
+  font-size: 3rem;
+  text-shadow: 2px 2px black;
+  margin-top: 50px;
+}
+
+.user-posts {
+  justify-self: center;
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-messages {
+  justify-self: center;
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.account-footer {
+  border: white;
+  border-style: ridge;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #465945;
+  margin-top: 100px;
+}
+
+#social-links {
+  display: flex;
+  flex-direction: row;
+  background: #465945;
+}
+
+#social-links p {
+  padding: 10px;
+}
+
+#profile-pic {
+  width: 200px;
+  height: 200px;
+}
+
+#addPost-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#addPost-title {
+  width: 50%;
+  margin-left: 450px;
+}
+
+.addPost-form {
+  width: 50%;
+  margin-left: 450px;
+}
+
+#message-title {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

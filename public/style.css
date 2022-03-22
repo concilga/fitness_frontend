@@ -1,0 +1,294 @@
+* {
+  font-family: arial,sans-serif;
+  margin: 0;
+}
+
+/* colors
+  background: #15202B
+  post/card background: #192734
+  card accents: #22303C
+  light purple: #BB86FC
+  text: #FFFFFF
+  grey borders: #8899A6
+*/
+
+body {
+  /* padding: 20px; */
+  background-color: #15202B;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+
+.home-page {
+  margin-top: 50px;
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+#logo {
+  font-size: 25rem;
+  margin-bottom: 30px;
+}
+
+#logo-account {
+  font-size: 9rem;
+}
+
+.main-navbar {
+  background-color: #15202B;
+  border-bottom: white;
+  border-width: 2px;
+  color: white;
+}
+
+#icon i {
+  text-decoration: none;
+  color: white;
+  font-size: 2.4rem;
+}
+
+.posts-page{
+  background-color: #15202B;
+  color: white;
+  text-shadow: 2px 2px #15202B;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  padding: 30px;
+}
+
+.post-header {
+  background-image: url("https://images.pexels.com/photos/1275393/pexels-photo-1275393.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid;
+  border-width: 1px;
+  border-color: #8899A6;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 30px;
+  font-size: 4rem;
+  text-align: center;
+  width: auto;
+  height: 700px;
+}
+
+.add-post-form {
+  width: 50%;
+  margin-left: 450px;
+  font-size: 2rem;
+}
+
+#add-post-btn {
+  align-self: center;
+  width: 30%;
+  padding: 1em 2em;
+  background-color: #59A9C2;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  transition: all 1s ease;
+  outline: none;
+  text-decoration: none;
+}
+
+.public-posts {
+  display: flex;
+  flex-direction: column;
+  background-color: #192734;
+  height: 200px;
+  border: solid;
+  border-width: 1px;
+  border-color: #8899A6;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+#card-header {
+  background-color: #22303C;
+  height: 25%;
+}
+
+#card-body {
+  
+}
+
+
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#login-navbar {
+  flex-grow: 1;
+  max-height: 10%;
+  min-height: 40px;
+  color: gray;
+  padding: 1em 0 0 1em;
+}
+
+.login-form {
+  color: white;
+  text-shadow: 2px 2px black;
+  font-size: 2rem;
+  width: 50%;
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 2;
+  margin: 1em;
+}
+
+form input {
+  margin: 1em 0;
+  font-size: 1em;
+}
+
+form button {
+  padding: 1em 2em;
+  background-color: #59A9C2;
+  color: white;
+  border: none;
+  font-size: 1em;
+  transition: all 1s ease;
+  outline: none;
+}
+
+form button:hover {
+  background-color: #65878F;
+}
+
+a {
+  margin: 10px;
+}
+
+.account-page {
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+}
+
+.account-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+  border: white;
+  border-style: ridge;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  height: fit-content;
+  width: 100%;
+}
+
+.account-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-post-title {
+  justify-self: center;
+  color: white;
+  font-size: 3rem;
+  text-shadow: 2px 2px black;
+  margin-top: 50px;
+}
+
+#messages-title {
+  color: white;
+  margin-top: 15px;
+  text-shadow: 2px 2px black;
+}
+
+.user-posts {
+  justify-self: center;
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-messages {
+  justify-self: center;
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.account-footer {
+  color: white;
+  text-shadow: 2px 2px black;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+  padding: 10px;
+}
+
+
+#social-links {
+  display: flex;
+  flex-direction: row;
+}
+
+#social-links p {
+  padding: 10px;
+}
+
+#profile-pic {
+  width: 200px;
+  height: 200px;
+}
+
+#addPost-container {
+  color: #FFFFFF;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  border: solid;
+  border-width: 1px;
+  border-color: #8899A6;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+#addPost-title {
+  width: 90%;
+}
+
+.addPost-form {
+  width: 90%;
+}
+
+#message-title {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
