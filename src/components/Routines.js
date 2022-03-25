@@ -1,21 +1,23 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
-const Routines = () => {
+const Routines = (token) => {
 
   const [publicRoutines, setPublicRoutines] = useState([]);
-  const [filteredRoutines, setFilteredRoutines] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
+  function routineMatches(routine, text) {  
+      if (routine.name.toLowerCase().includes(text) || routine.goal.toLowerCase().includes(text) ||
+          (routine.creatorName.toLowerCase().includes(text))
+      ){
+          return true;
+      } else {
+          return false;
+      }
+  }
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-    const filteredResults = publicRoutines.filter((routines) => {
-      return routines.name.includes(e.target.value);
-    });
-    setFilteredRoutines(filteredResults);
-  };
+  const filteredRoutines = publicRoutines.filter(routine => routineMatches(routine, searchTerm));
+  const routinesToDisplay = searchTerm.length ? filteredRoutines : publicRoutines;
 
   async function fetchRoutines() {
     const response = await fetch(
@@ -39,29 +41,32 @@ const Routines = () => {
     }, []);
 
   return (
-    <>
-      <input
-        type="text"
-        placeholder="Search Routines"
-        onChange={handleChange}
-        value={searchInput}
-      />
-      <button
-        onClick={() => {
-          setPublicRoutines(filteredRoutines);
-        }}
-      >
-        GO!
-      </button>
-      <h1>Routines</h1>
+    <div className="routine-page">
+    <div className="routine-header">
+        <h2>Routines</h2>
+        <form className="add-post-form">
+            <label htmlFor='title'>Search:</label>
+            <input required type='text' name='searchTerm' value={searchTerm} 
+                onChange={(event) => setSearchTerm(event.target.value)}/>
+        </form>
+        {token  ? (
+            <button id="add-post-btn">
+                <Link to="/AddPost">Add Routine</Link>
+            </button>
+        ) : (
+            null
+        )}
+    </div> 
+    <div id="cards">
+      <h1 id="routine_cards_title">Routines</h1>
       {
         publicRoutines[0] ? (
-            publicRoutines.map((routine) => {
+            routinesToDisplay.map((routine) => {
             return (
-                <div key={routine.id}>
-                    <h2>{routine.name}</h2>
-                    <p>{routine.goal}</p>
-                    <p>{routine.creatorName}</p>
+                <div key={routine.id} id="card">
+                    <h2 id="name">{routine.name}</h2>
+                    <p id="goal">Description: {routine.goal}</p>
+                    <p id="creator">Creator: {routine.creatorName}</p>
                 </div>
             );
             })
@@ -69,7 +74,8 @@ const Routines = () => {
             null
         )
       }
-    </>
+    </div>
+    </div>
   );
 };
 export default Routines;

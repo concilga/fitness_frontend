@@ -48,7 +48,7 @@ const App = () => {
                 <Profile user={user} />
             </Route>
             <Route path="/Routines">
-                    <Routines  />
+                    <Routines token={token} />
             </Route>
             <Route path="/Login">
                 <Login token={token} setToken={setToken} />
