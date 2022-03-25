@@ -23,26 +23,24 @@ const Register = ({setToken}) => {
             return;
         }
 
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2110-FTB-ET-WEB-PT/users/register', {
+        const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                user: {
                     username,
-                    password,
-                },
+                    password
             }),
         });
         const info = await response.json();
 
         if(info.error) {
-            return setError(info.error.message)
+            return setError(info.message)
         }
 
-        setToken(info.data.token);
-        localStorage.setItem("token", info.data.token);
+        setToken(info.token);
+        localStorage.setItem("token", info.token);
 
         history.push("/");
     }

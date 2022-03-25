@@ -17,16 +17,14 @@ const Login = ({setToken}) => {
         event.preventDefault();
         setCheckLogin("");
 
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2110-FTB-ET-WEB-PT/users/login', {
+        const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                user: {
                     username,
-                    password,
-                },
+                    password
             }),
         });
         const info = await response.json();
@@ -35,8 +33,8 @@ const Login = ({setToken}) => {
             return setCheckLogin(info.error.message)
         }
 
-        setToken(info.data.token);
-        localStorage.setItem("token", info.data.token);
+        setToken(info.token);
+        localStorage.setItem("token", info.token);
 
         history.push("/");
     }

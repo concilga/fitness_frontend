@@ -47,9 +47,14 @@ body {
   color: white;
 }
 
-#icon i {
+#icon {
   text-decoration: none;
   color: white;
+  font-size: 2rem;
+}
+
+#icon:hover {
+  text-decoration: underline;
   font-size: 2.4rem;
 }
 

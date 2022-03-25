@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-const Navbar = ({token, setToken, setUser, user}) => {
+const Navbar = ({token, setToken, setUser}) => {
 
     return (
         <>{token ? (
             <div id="main-navbar">
-                <Link id="icon" to="/"><i className="material-icons">home</i></Link> 
-                <Link id="icon" to="/Posts"><i className="material-icons">collections_bookmark</i></Link>
-                <Link id="icon" to="/Account">
-                    <i className="material-icons">account_circle</i>
-                </Link>
+                <Link id="icon" to="/">Home</Link> 
+                <Link id="icon" to="/Routines">Routines</Link>
+                <Link id="icon" to="/">Activites</Link>
+                <Link id="icon" to="/Profile">Profile</Link>
                 <Link
                     id="icon"
                     to="/"
@@ -20,13 +19,13 @@ const Navbar = ({token, setToken, setUser, user}) => {
                         setUser({});
                         localStorage.removeItem("token")
                     }}
-                ><i className="material-icons">logout</i></Link>
+                >Logout</Link>
             </div>
             ) : (
             <div id="main-navbar">
-                <Link id="icon" to="/"><i className="material-icons">home</i></Link> 
-                <Link id="icon" to="/Posts"><i className="material-icons">collections_bookmark</i></Link> 
-                <Link id="icon" to="/Login"><i className="material-icons">login</i></Link>
+                <Link id="icon" to="/">Home</Link> 
+                <Link id="icon" to="/Routines">Routines</Link> 
+                <Link id="icon" to="/Login">Login</Link>
             </div>
         )}</>
     );
