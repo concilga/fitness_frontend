@@ -1,10 +1,30 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
-const Routines = (token) => {
+const MyRoutines = ({token, user})=> {
+    if(!user){
+        return (
+            <></>
+        )
+    }
 
   const [publicRoutines, setPublicRoutines] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const { username } = user;
+
+  async function fetchRoutines() {
+    const response = await fetch(
+      `http://fitnesstrac-kr.herokuapp.com/users/${username}/routines`,
+      {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+      }
+    );
+    const info = await response.json();
+    setPublicRoutines(info);
+  }
 
   function routineMatches(routine, text) {  
       if (routine.name.toLowerCase().includes(text) || routine.goal.toLowerCase().includes(text) ||
@@ -21,7 +41,7 @@ const Routines = (token) => {
 
   async function fetchRoutines() {
     const response = await fetch(
-      "http://fitnesstrac-kr.herokuapp.com/api/routines",
+      `http://fitnesstrac-kr.herokuapp.com/api/users/${username.toLowerCase()}/routines`,
       {
         method: "GET",
         headers: {
@@ -42,7 +62,7 @@ const Routines = (token) => {
   return (
     <div className="routine-page">
     <div className="routine-header">
-        <h2>Routines</h2>
+        <h2>My Routines</h2>
         <form className="add-form">
             <label htmlFor='title'>Search:</label>
             <input required type='text' name='searchTerm' value={searchTerm} 
@@ -57,7 +77,7 @@ const Routines = (token) => {
         )}
     </div> 
     <div id="cards">
-      <h1 id="routine_cards_title">Routines</h1>
+      <h1 id="routine_cards_title">My Routines</h1>
       {
         publicRoutines[0] ? (
             routinesToDisplay.map((routine) => {
@@ -77,4 +97,4 @@ const Routines = (token) => {
     </div>
   );
 };
-export default Routines;
+export default MyRoutines;

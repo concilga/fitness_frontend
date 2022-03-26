@@ -4,16 +4,16 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register';
 import Navbar from './Navbar';
-import Profile from './Profile';
+import MyRoutines from './MyRoutines';
 import Home from './Home'
 import Routines from './Routines';
+import Activities from './Activities';
 
 
 
 const App = () => {
     const [token, setToken] = useState("");
     const [user, setUser] = useState(null)
-
 
     const fetchUser = async() => {
         const isToken = localStorage.getItem("token");
@@ -27,8 +27,8 @@ const App = () => {
         });
         const info = await response.json();
         
-        if(info.success) {
-            setUser(info.data);
+        if(info.id) {
+            setUser(info);
         }
     }
     
@@ -44,8 +44,8 @@ const App = () => {
             <Route exact path="/">
                 <Home />
             </Route>
-            <Route path="/Profile">
-                <Profile user={user} />
+            <Route path="/MyRoutines">
+                <MyRoutines user={user} token={token} />
             </Route>
             <Route path="/Routines">
                     <Routines token={token} />
@@ -56,9 +56,9 @@ const App = () => {
             <Route path="/Register">
                 <Register token={token} setToken={setToken} />
             </Route>
-            {/* <Route path="/Activities">
-                <Activites />
-            </Route> */}
+            <Route path="/Activities">
+                <Activities token={token} />
+            </Route>
         </>
     );
 }

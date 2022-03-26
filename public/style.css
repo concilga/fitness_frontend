@@ -45,6 +45,15 @@ body {
   border-bottom: white;
   border-width: 2px;
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
 }
 
 #icon {
@@ -56,6 +65,14 @@ body {
 #icon:hover {
   text-decoration: underline;
   font-size: 2.4rem;
+}
+
+.scroll-down #main-navbar{
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up #main-navbar{
+  filter: drop-shadow(0 -10px 20px rgb(170,170,170))
 }
 
 .routine-page{
@@ -117,6 +134,7 @@ body {
 .routine-page > #cards > #routine_cards_title {
   font-size: 3.5rem;
 }
+
 .routine-page > #cards {
   grid-column: 3 / 4;
   display: flex;
