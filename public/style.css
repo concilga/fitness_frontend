@@ -17,11 +17,68 @@ body {
   background-color: #15202B;
   justify-content: center;
   width: auto;
-  height: auto;
+  height: 100%;
+}
+
+#app {
+  height: auto
+}
+
+.main-navbar {
+  background-color: #15202B;
+  border-bottom: white;
+  border-width: 2px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
+}
+
+.main-navbar > #link_logo {
+  height: 100px;
+  margin-left: 50px;
+}
+
+.main-navbar > #link_logo > img {
+  height: 100px;
+}
+
+.main-navbar > #nav {
+ margin-right: 50px;;
+}
+
+#nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+}
+
+#nav-link:hover {
+  text-decoration: underline;
+  font-size: 2.4rem;
+}
+
+.scroll-down .main-navbar{
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up .main-navbar{
+  filter: drop-shadow(0 -10px 20px rgb(170,170,170))
 }
 
 .home-page {
   margin-top: 50px;
+  height: 100%;
+  background-image: url("https://images.pexels.com/photos/669576/pexels-photo-669576.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-size: cover;
+  background-position: center;
   padding: auto;
   display: flex;
   flex-direction: column;
@@ -36,45 +93,6 @@ body {
   margin-bottom: 30px;
 }
 
-#logo-account {
-  font-size: 9rem;
-}
-
-.main-navbar {
-  background-color: #15202B;
-  border-bottom: white;
-  border-width: 2px;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  transition: all 300ms ease-in-out;
-}
-
-#icon {
-  text-decoration: none;
-  color: white;
-  font-size: 2rem;
-}
-
-#icon:hover {
-  text-decoration: underline;
-  font-size: 2.4rem;
-}
-
-.scroll-down #main-navbar{
-  transform: translate3d(0, -100%, 0);
-}
-
-.scroll-up #main-navbar{
-  filter: drop-shadow(0 -10px 20px rgb(170,170,170))
-}
-
 .routine-page{
   background-color: #15202B;
   color: white;
@@ -83,7 +101,6 @@ body {
   grid-template-columns: 80px 1fr 3fr 1fr 80px;
   grid-column-gap: 5px;
   width: auto;
-  height: 100%;
   padding: 30px;
 }
 

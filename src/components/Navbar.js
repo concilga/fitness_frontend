@@ -28,30 +28,35 @@ const Navbar = ({token, setToken, setUser}) => {
 })
 
     return (
-        <>{token ? (
-            <div id="main-navbar">
-                <Link id="icon" to="/">Home</Link> 
-                <Link id="icon" to="/Routines">Routines</Link>
-                <Link id="icon" to="/Activities">Activities</Link>
-                <Link id="icon" to="/MyRoutines">My Routines</Link>
-                <Link
-                    id="icon"
-                    to="/"
-                    onClick={() => {
-                        setToken("");
-                        setUser({});
-                        localStorage.removeItem("token")
-                    }}
-                >Logout</Link>
-            </div>
-            ) : (
-            <div id="main-navbar">
-                <Link id="icon" to="/">Home</Link> 
-                <Link id="icon" to="/Routines">Routines</Link>
-                <Link id="icon" to="/Activities">Activities</Link>
-                <Link id="icon" to="/Login">Login</Link>
-            </div>
-        )}</>
+        <header className="main-navbar">
+            <Link id="link_logo" to="/">
+                <img src="/images/logo.png" alt="" />
+            </Link>
+            {token ? (
+                <div id="nav">
+                    <Link id="nav-link" to="/">Home</Link> 
+                    <Link id="nav-link" to="/Routines">Routines</Link>
+                    <Link id="nav-link" to="/Activities">Activities</Link>
+                    <Link id="nav-link" to="/MyRoutines">My Routines</Link>
+                    <Link
+                        id="nav-link"
+                        to="/"
+                        onClick={() => {
+                            setToken("");
+                            setUser({});
+                            localStorage.removeItem("token")
+                        }}
+                    >Logout</Link>
+                </div>
+                ) : (
+                <div id="nav">
+                    <Link id="nav-link" to="/">Home</Link> 
+                    <Link id="nav-link" to="/Routines">Routines</Link>
+                    <Link id="nav-link" to="/Activities">Activities</Link>
+                    <Link id="nav-link" to="/Login">Login</Link>
+                </div>
+            )}
+        </header>
     );
 }
 
