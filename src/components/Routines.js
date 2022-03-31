@@ -1,9 +1,7 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
-const Routines = (token) => {
-
-  const [publicRoutines, setPublicRoutines] = useState([]);
+const Routines = ({token, publicRoutines}) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   function routineMatches(routine, text) {  
@@ -19,26 +17,6 @@ const Routines = (token) => {
   const filteredRoutines = publicRoutines.filter(routine => routineMatches(routine, searchTerm));
   const routinesToDisplay = searchTerm.length ? filteredRoutines : publicRoutines;
 
-  async function fetchRoutines() {
-    const response = await fetch(
-      "http://fitnesstrac-kr.herokuapp.com/api/routines",
-      {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-      }
-    );
-    const info = await response.json();
-    setPublicRoutines(info);
-  }
-
-
-
-    useEffect(() => {
-        fetchRoutines();
-    }, []);
-
   return (
     <div className="routine-page">
     <div className="routine-header">
@@ -50,22 +28,47 @@ const Routines = (token) => {
         </form>
         {token  ? (
             <button id="add-post-btn">
-                <Link to="/AddPost">Add Routine</Link>
+                <Link to="/AddRoutine">Add Routine</Link>
             </button>
         ) : (
             null
         )}
     </div> 
+    <h1 id="routine_cards_title">Routines:</h1>
     <div id="cards">
-      <h1 id="routine_cards_title">Routines</h1>
       {
         publicRoutines[0] ? (
             routinesToDisplay.map((routine) => {
             return (
                 <div key={routine.id} id="card">
+                  <div id="name_section">
                     <h2 id="name">{routine.name}</h2>
-                    <p id="goal">Description: {routine.goal}</p>
-                    <p id="creator">Creator: {routine.creatorName}</p>
+                    <div id="goal_section">
+                      <p id="goal-title">Goal:</p>
+                      <p id="goal">{routine.goal}</p>
+                    </div>
+                  </div>
+                  <div id="activ_section">
+                    <h3>Activities:</h3>
+                    <div id="activ_cards">
+                      {routine.activities.map((activity) => {
+                        return (
+                          <div key={activity.id} id="activ_card">
+                            <div id="activ-head">
+                              <p id="activities">Activity: {activity.name}</p>
+                              <button>
+                                <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/32/000000/external-delete-interface-anggara-blue-anggara-putra.png"/>
+                              </button>
+                            </div>
+                            <p id="description">Description: {activity.description}</p>
+                            <p id="count">Count: {activity.count}</p>
+                            <p id="duration">Duration: {activity.duration}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <p id="creator">Creator: {routine.creatorName}</p>
                 </div>
             );
             })

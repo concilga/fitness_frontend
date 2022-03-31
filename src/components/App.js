@@ -8,12 +8,14 @@ import MyRoutines from './MyRoutines';
 import Home from './Home'
 import Routines from './Routines';
 import Activities from './Activities';
+import AddRoutine from './AddRoutine';
 
 
 
 const App = () => {
     const [token, setToken] = useState("");
     const [user, setUser] = useState(null)
+    const [publicRoutines, setPublicRoutines] = useState([]);
 
     const fetchUser = async() => {
         const isToken = localStorage.getItem("token");
@@ -31,9 +33,24 @@ const App = () => {
             setUser(info);
         }
     }
+
+    async function fetchRoutines() {
+        const response = await fetch(
+          "http://fitnesstrac-kr.herokuapp.com/api/routines",
+          {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+          }
+        );
+        const info = await response.json();
+        setPublicRoutines(info);
+    }
     
     useEffect(() => {
         fetchUser();
+        fetchRoutines();
     }, [token]);
 
     return (
@@ -48,7 +65,7 @@ const App = () => {
                 <MyRoutines user={user} token={token} />
             </Route>
             <Route path="/Routines">
-                    <Routines token={token} />
+                    <Routines publicRoutines={publicRoutines} token={token} />
             </Route>
             <Route path="/Login">
                 <Login token={token} setToken={setToken} />
@@ -58,6 +75,9 @@ const App = () => {
             </Route>
             <Route path="/Activities">
                 <Activities token={token} />
+            </Route>
+            <Route path="/AddRoutine">
+                <AddRoutine setPublicRoutines={setPublicRoutines} token={token} user={user} />
             </Route>
         </>
     );

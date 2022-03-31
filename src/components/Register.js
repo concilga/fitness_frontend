@@ -65,9 +65,9 @@ const Register = ({setToken}) => {
               <input required type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
               <label htmlFor='confirm_password'>Confirm Password:</label>
               <input required type='password' name='confirm_password' value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+              <p>{error}</p>
               <button type='submit'>Submit</button>
             </form>
-            <p>{error}</p>
       </div>
     )
 

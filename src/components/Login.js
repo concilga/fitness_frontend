@@ -30,7 +30,7 @@ const Login = ({setToken}) => {
         const info = await response.json();
 
         if(info.error) {
-            return setCheckLogin(info.error.message)
+            return setCheckLogin(info.error)
         }
 
         setToken(info.token);
@@ -57,6 +57,7 @@ const Login = ({setToken}) => {
             <input required type='text' name='username' value={username} onChange={handleChange} />
             <label htmlFor='password'>Password:</label>
             <input required type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
+            <p>{checkLogin}</p>
             <button type='submit'>Submit</button>
           </form>
           <p>Haven't created an account yet?</p>
@@ -65,7 +66,6 @@ const Login = ({setToken}) => {
               <Link to="/Register">Register Here</Link>
               </>
           }
-          <p>{checkLogin}</p>
         </div>
       </div>
     )
