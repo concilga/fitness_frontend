@@ -1,81 +1,78 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-
-const Activities = (token) => {
-  const [publicActivities, setPublicActivities] = useState([]);
+const Activities = ({ token, publicActivities }) => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  function activityMatches(activity, text) {  
-    if (activity.name.toLowerCase().includes(text) || activity.description.toLowerCase().includes(text)
-    ){
-        return true;
+  function activityMatches(activity, text) {
+    if (
+      activity.name.toLowerCase().includes(text) ||
+      activity.description.toLowerCase().includes(text)
+    ) {
+      return true;
     } else {
-        return false;
+      return false;
     }
-    }
-
-  const filteredActivities = publicActivities.filter(activity => activityMatches(activity, searchTerm));
-  const activitiesToDisplay = searchTerm.length ? filteredActivities : publicActivities;
-
-  async function fetchActivities() {
-    const response = await fetch(
-      "http://fitnesstrac-kr.herokuapp.com/api/activities",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-        );
-        const activityList = await response.json();
-        setPublicActivities(activityList);
-    }
-
-//   async function createActivity() {
-//       const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
-//         method: "POST",
-//         body: JSON.stringify({
-//           name,
-//           description
-//         })
-//       });
-//     const newActivity = await response.json();
-//     console.log(newActivity, "New Activity");
-//     setPublicActivities(newActivity);
-//   }
-  useEffect(() => {
-    fetchActivities();
-  }, []);
-
+  }
+  const filteredActivities = publicActivities.filter((activity) =>
+    activityMatches(activity, searchTerm)
+  );
+  const activitiesToDisplay = searchTerm.length
+    ? filteredActivities
+    : publicActivities;
+  useEffect(() => {}, []);
   return (
     <div className="routine-page">
-    <div className="routine-header">
-      <h2>Activities</h2>
-      <form className="add-activity-post-form">
-        <label htmlFor="title">Search:</label>
-        <input
-          required
-          type="text"
-          name="searchTerm"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
-      </form>
-      {token ? (
-        <button id="add-post-btn">
-          <Link to="/AddPost">Add Activity</Link>
-        </button>
-      ) : null}
-    </div>
+      <div className="routine-header">
+        <h2>Activities</h2>
+        <form className="add-activity-post-form">
+          <label htmlFor="title">Search:</label>
+          <input
+            required
+            type="text"
+            name="searchTerm"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
+        </form>
+        {token ? (
+          <button className="button-19">
+            <Link to="/AddActivity" id="addR-btn">Add Activity</Link>
+          </button>
+        ) : null}
+      </div>
+      <h1 id="routine_cards_title">Activities:</h1>
       <div id="cards">
-        <h1 id="routine_cards_title">Activities</h1>
         {publicActivities[0]
           ? activitiesToDisplay.map((activity) => {
-              console.log(activity)
               return (
                 <div key={activity.id} id="card">
-                  <h2 id="name">{activity.name}</h2>
-                  <p id="description">Description: {activity.description}</p>
+                  <div id="name_section">
+                    <h2 id="name">{activity.name}</h2>
+                    <div id="goal_section">
+                      <p id="goal-title">Description:</p>
+                      <p id="goal">{activity.description}</p>
+                    </div>
+                  </div>
+                  <div id="activ_section">
+                    <h3>Associated Routines:</h3>
+                    <div id="activ_cards">
+                      {/* {routine.activities.map((activity) => {
+                        return (
+                          <div key={activity.id} id="activ_card">
+                            <div id="activ-head">
+                              <p id="activities">Activity: {activity.name}</p>
+                              <button>
+                                <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/32/000000/external-delete-interface-anggara-blue-anggara-putra.png"/>
+                              </button>
+                            </div>
+                            <p id="description">Description: {activity.description}</p>
+                            <p id="count">Count: {activity.count}</p>
+                            <p id="duration">Duration: {activity.duration}</p>
+                          </div>
+                        );
+                      })} */}
+                    </div>
+                  </div>
+                  <p id="creator">Fitness+ llc</p>
                 </div>
               );
             })
@@ -84,4 +81,5 @@ const Activities = (token) => {
     </div>
   );
 };
+
 export default Activities;
