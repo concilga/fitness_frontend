@@ -90,7 +90,7 @@ const App = () => {
                 <Register token={token} setToken={setToken} />
             </Route>
             <Route path="/Activities">
-                <Activities  publicActivities={publicActivities} token={token} user={user} />
+                <Activities  publicActivities={publicActivities} token={token} user={user} fetchActivities={fetchActivities}/>
             </Route>
             <Route path="/AddRoutine">
                 <AddRoutine setPublicRoutines={setPublicRoutines} token={token} user={user} />

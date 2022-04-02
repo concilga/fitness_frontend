@@ -1,7 +1,10 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-const Activities = ({ token, publicActivities }) => {
+const Activities = ({ token, publicActivities, fetchActivities }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
+  const [routines, setRoutines] = useState([]);
+  const [id, setId] = useState("");
   function activityMatches(activity, text) {
     if (
       activity.name.toLowerCase().includes(text) ||
@@ -19,6 +22,26 @@ const Activities = ({ token, publicActivities }) => {
     ? filteredActivities
     : publicActivities;
   useEffect(() => {}, []);
+  async function handleClick(activityId) {
+    setId(activityId);
+    setError("");
+    const response = await fetch(
+      `http://fitnesstrac-kr.herokuapp.com/api/activities/${activityId}/routines`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const info = await response.json();
+    setRoutines(info);
+    if (info.error) {
+      return setError(info.error);
+    }
+    await fetchActivities();
+  }
+  console.log("routines", routines);
   return (
     <div className="routine-page">
       <div className="routine-header">
@@ -35,7 +58,9 @@ const Activities = ({ token, publicActivities }) => {
         </form>
         {token ? (
           <button className="button-19">
-            <Link to="/AddActivity" id="addR-btn">Add Activity</Link>
+            <Link to="/AddActivity" id="addR-btn">
+              Add Activity
+            </Link>
           </button>
         ) : null}
       </div>
@@ -53,24 +78,40 @@ const Activities = ({ token, publicActivities }) => {
                     </div>
                   </div>
                   <div id="activ_section">
-                    <h3>Associated Routines:</h3>
-                    <div id="activ_cards">
-                      {/* {routine.activities.map((activity) => {
-                        return (
-                          <div key={activity.id} id="activ_card">
-                            <div id="activ-head">
-                              <p id="activities">Activity: {activity.name}</p>
-                              <button>
-                                <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/32/000000/external-delete-interface-anggara-blue-anggara-putra.png"/>
-                              </button>
-                            </div>
-                            <p id="description">Description: {activity.description}</p>
-                            <p id="count">Count: {activity.count}</p>
-                            <p id="duration">Duration: {activity.duration}</p>
-                          </div>
-                        );
-                      })} */}
+                    <div>
+                      <h3>Associated Routines:</h3>
+                      <button
+                        id={`assoc_routines_${activity.id}`}
+                        className="assoc_routines"
+                        onClick={() => handleClick(activity.id)}
+                      >
+                        View Associated Routines
+                      </button>
                     </div>
+                    {routines[0] && activity.id == id ? (
+                      <div id="activ_cards">
+                        {routines.map((routine) => {
+                          return (
+                            <div key={routine.id} id="activ_card">
+                              <div id="activ-head">
+                                <p id="activities">Routine: {routine.name}</p>
+                              </div>
+                              <p id="description">Goal: {routine.goal}</p>
+                              <p id="count">Creator: {routine.creatorName}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div>
+                        {id && activity.id == id ? (
+                          <h1>No Routines to Display</h1>
+                        ) : (
+                          null
+                        )
+                        }
+                        </div>
+                    )}
                   </div>
                   <p id="creator">Fitness+ llc</p>
                 </div>
@@ -81,5 +122,4 @@ const Activities = ({ token, publicActivities }) => {
     </div>
   );
 };
-
 export default Activities;

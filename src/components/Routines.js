@@ -27,7 +27,7 @@ const Routines = ({token, publicRoutines, user}) => {
   return (
     <div className="routine-page">
       <div className="routine-header">
-        <h2>My Routines</h2>
+        <h2>Routines</h2>
         <form className="add-form">
             <label htmlFor='title'>Search:</label>
             <input required type='text' name='searchTerm' value={searchTerm} 
