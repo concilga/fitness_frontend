@@ -76,7 +76,7 @@ body {
 .home-page {
   margin-top: 115px;
   height: 100%;
-  background-image: url("https://images.pexels.com/photos/669576/pexels-photo-669576.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-image: url("https://images.unsplash.com/photo-1594911772125-07fc7a2d8d9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
   background-size: cover;
   background-position: center;
   padding: auto;
@@ -85,7 +85,17 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  text-shadow: 1px 1px black;
+  text-shadow: 5px 2px black;
+}
+
+#home-title {
+  font-family: "Racing Sans One", cursive;
+  padding-top: 80px;
+  padding-left: 520px;
+  font-size: 100px;
+  text-align: right;
+  width: 450px;
+  height: 600px;
 }
 
 #logo {

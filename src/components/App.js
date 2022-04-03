@@ -11,6 +11,7 @@ import Activities from './Activities';
 import AddRoutine from './AddRoutine';
 import EditRoutine from './EditRoutine';
 import AddActivity from './AddActivity';
+import EditActvitiy from './EditActivity';
 
 const App = () => {
     const [token, setToken] = useState("");
@@ -100,6 +101,9 @@ const App = () => {
             </Route>
             <Route path="/EditRoutine/:id">
                 <EditRoutine token={token} publicRoutines={publicRoutines} setPublicRoutines={setPublicRoutines} user={user}/>
+            </Route>
+            <Route path="/EditActivity/:id">
+                <EditActvitiy token={token} publicRoutines={publicRoutines} setPublicRoutines={setPublicRoutines} user={user}/>
             </Route>
         </>
     );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Link, useParams, useHistory } from 'react-router-dom';
 
-const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
+const EditActvitiy = ({token, user, setPublicRoutines, publicRoutines}) => {
     if(!user){
         return (
             <></>
@@ -11,8 +11,8 @@ const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
 
     const {id} = useParams()
 
-    const [name, setName] = useState('');
-    const [goal, setGoal] = useState('');
+    const [count, setCount] = useState('');
+    const [duration, setDuration] = useState('');
     const [error, setError] = useState('');
 
     const history = useHistory();
@@ -22,36 +22,20 @@ const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
         const info = await response.json();
         setPublicRoutines(info);
     }
-    
-    const setTemplate = () => {
-        fetchRoutines();
-
-        const individualRoutine = publicRoutines.filter(
-            (routine) => routine.id == id
-        );
-
-        setName(individualRoutine[0].name);
-        setGoal(individualRoutine[0].goal);
-    }
-
-    useEffect(() => {
-        setTemplate();
-    }, []);
 
     const handleSubmit = async(event) => {
         event.preventDefault();
         setError("");
 
-        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
+        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                    name,
-                    goal,
-                    isPublic: true
+                    count,
+                    duration
             })
         });
         const info = await response.json();
@@ -73,12 +57,12 @@ const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
                 <h2>Please Edit the Information Below and Submit:</h2>
             </div>
             <form className="addPost-form" onSubmit={handleSubmit}>
-              <label htmlFor='name'>Name of Routine:</label>
-              <input required type='text' name='name' value={name} 
-                onChange={(event) => setName(event.target.value)}/>
-              <label htmlFor='goal'>Description:</label>
-              <input required type='goal' name='goal' value={goal} 
-                onChange={(event) => setGoal(event.target.value)}/>
+              <label htmlFor='count'>Count of an Activity:</label>
+              <input required type='text' name='count' value={count} 
+                onChange={(event) => setCount(event.target.value)}/>
+              <label htmlFor='duration'>Duration:</label>
+              <input required type='duration' name='duration' value={duration} 
+                onChange={(event) => setDuration(event.target.value)}/>
               <button type='submit'>Submit</button>
             </form>
             <p>{error}</p>
@@ -86,4 +70,4 @@ const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
     )
 }
 
-export default EditRoutine;
+export default EditActvitiy;

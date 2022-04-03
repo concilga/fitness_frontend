@@ -13,6 +13,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
   const [activityId, setActivityId] = useState(null);
+  const [id, setId] = useState(null);
   const [duration, setDuration] = useState('');
   const [count, setCount] = useState('');
   const history = useHistory();
@@ -53,10 +54,26 @@ const MyRoutines = ({token, user, publicActivities})=> {
       fetchRoutines();
       history.push("/MyRoutines");
     }
-    
-    useEffect(() => {
-        fetchRoutines();
-    }, []);
+
+    async function handleActivClick(id) {
+      setError("");
+
+      const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
+          method: "DELETE",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+      });
+      const info = await response.json();
+
+      if(info.error) {
+          return setError(info.error);
+      }
+
+      fetchRoutines();
+      history.push("/MyRoutines");
+    }
 
     if(activityId){
       displayActivDetail = true;
@@ -90,6 +107,10 @@ const MyRoutines = ({token, user, publicActivities})=> {
       setActivityId(null);
       displayActivDetail = false;
     }
+
+    useEffect(() => {
+      fetchRoutines();
+    }, []);
 
   return (
     <div className="routine-page">
@@ -136,7 +157,10 @@ const MyRoutines = ({token, user, publicActivities})=> {
                             id="selectActiv"
                             defaultValue="default"
                             required
-                            onChange={(e) => {setActivityId(e.target.value);}}
+                            onChange={(e) => {
+                              setActivityId(e.target.value)
+                              setId(routine.id)
+                            }}
                           >
                             <option key="default" value="default" disabled>
                               Add an Activity
@@ -151,16 +175,19 @@ const MyRoutines = ({token, user, publicActivities})=> {
                           </select>
                         </div>
                       </div>
-                      {displayActivDetail ? (
+                      {displayActivDetail && routine.id === id ? (
                         <div>
                           <div id='addPost-container'>
                             <div id='addPost-title'>
                               <p>Please Fill Out the Information Below to Create a New Activity</p>
                             </div>
-                            <form className="addPost-form" onSubmit={(e) => {
-                                                                        e.preventDefault()
-                                                                        handleSubmit(routine.id)
-                                                                      }}>
+                            <form 
+                              className="addPost-form" 
+                              onSubmit={(e) => {
+                                e.preventDefault()
+                                handleSubmit(routine.id)
+                              }}
+                            >
                               <label htmlFor='duration'>Duration:</label>
                               <input required type='text' name='duration' value={duration} 
                                 onChange={(event) => setDuration(event.target.value)}/>
@@ -183,14 +210,16 @@ const MyRoutines = ({token, user, publicActivities})=> {
                             <div key={activity.id} id="activ_card">
                               <div id="activ-head">
                                 <p id="activities">Activity: {activity.name}</p>
-                                <button>
+                                <button id="delete-button" onClick={() => handleActivClick(activity.routineActivityId)}>
                                   <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/32/000000/external-delete-interface-anggara-blue-anggara-putra.png"/>
                                 </button>
                               </div>
                               <p id="description">Description: {activity.description}</p>
                               <p id="count">Count: {activity.count}</p>
                               <p id="duration">Duration: {activity.duration}</p>
-                              <button>Update</button>
+                              <button>
+                                <Link to={`/EditActivity/${activity.routineActivityId}`}>Edit</Link>
+                              </button>
                             </div>
                           );
                         })}

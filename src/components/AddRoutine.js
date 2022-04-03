@@ -37,7 +37,7 @@ const AddRoutine = ({token, setPublicRoutines, user}) => {
         const info = await response.json();
 
         if(info.error) {
-            return setError(info.error.message);
+            return setError(info.error);
         }
 
         fetchRoutines();
