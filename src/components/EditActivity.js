@@ -52,20 +52,22 @@ const EditActvitiy = ({token, user, setPublicRoutines, publicRoutines}) => {
 
 
     return (
-        <div id='addPost-container'>
-            <div id='addPost-title'>
+        <div id='container'>
+            <div id='login-navbar'>
                 <h2>Please Edit the Information Below and Submit:</h2>
             </div>
-            <form className="addPost-form" onSubmit={handleSubmit}>
-              <label htmlFor='count'>Count of an Activity:</label>
-              <input required type='text' name='count' value={count} 
-                onChange={(event) => setCount(event.target.value)}/>
-              <label htmlFor='duration'>Duration:</label>
-              <input required type='duration' name='duration' value={duration} 
-                onChange={(event) => setDuration(event.target.value)}/>
-              <button type='submit'>Submit</button>
-            </form>
-            <p>{error}</p>
+            <div className="login-form">
+                <form onSubmit={handleSubmit}>
+                <label htmlFor='count'>Count of an Activity:</label>
+                <input required type='text' name='count' value={count} 
+                    onChange={(event) => setCount(event.target.value)}/>
+                <label htmlFor='duration'>Duration:</label>
+                <input required type='duration' name='duration' value={duration} 
+                    onChange={(event) => setDuration(event.target.value)}/>
+                <button type='submit' className='button-19'>Submit</button>
+                </form>
+                <p>{error}</p>
+            </div>
       </div>
     )
 }

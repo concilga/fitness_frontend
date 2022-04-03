@@ -2,14 +2,8 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 const Routines = ({token, publicRoutines, user}) => {
-  if(!user){
-    return (
-        <></>
-    )
-  }
-
   const [searchTerm, setSearchTerm] = useState('');
-  const {username} = user;
+  // const {username} = user;
 
   function routineMatches(routine, text) {  
       if (routine.name.toLowerCase().includes(text) || routine.goal.toLowerCase().includes(text) ||
@@ -64,14 +58,6 @@ const Routines = ({token, publicRoutines, user}) => {
                               <div key={activity.id} id="activ_card">
                                 <div id="activ-head">
                                   <p id="activities">Activity: {activity.name}</p>
-                                  { username === routine.creatorName ? (
-                                      <button>
-                                        <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/32/000000/external-delete-interface-anggara-blue-anggara-putra.png"/>
-                                      </button>
-                                    ) : (
-                                      null
-                                    )
-                                  }
                                 </div>
                                 <p id="description">Description: {activity.description}</p>
                                 <p id="count">Count: {activity.count}</p>

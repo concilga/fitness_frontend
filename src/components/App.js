@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import MyRoutines from './MyRoutines';
 import Home from './Home'
 import Routines from './Routines';
@@ -73,7 +74,7 @@ const App = () => {
     return (
         <>
             <Navbar token={token} setToken={setToken} 
-            setUser={setUser} user={user} />
+            setUser={setUser} />
 
             <Route exact path="/">
                 <Home />
@@ -105,6 +106,8 @@ const App = () => {
             <Route path="/EditActivity/:id">
                 <EditActvitiy token={token} publicRoutines={publicRoutines} setPublicRoutines={setPublicRoutines} user={user}/>
             </Route>
+
+            <Footer />
         </>
     );
 }

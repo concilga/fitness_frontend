@@ -48,30 +48,32 @@ const AddActivity = ({ token, setPublicActivities, user }) => {
   };
 
   return (
-    <div id="addPost-container">
-      <div id="addPost-title">
+    <div id="container">
+      <div id="login-navbar">
         <h2>Please Fill Out the Information Below to Create a New Activity!</h2>
       </div>
-      <form className="addPost-form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          required
-          type="text"
-          name="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        <label htmlFor="description">Description:</label>
-        <input
-          required
-          type="text"
-          name="description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <p>{error}</p>
+      <div className="login-form">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Name:</label>
+          <input
+            required
+            type="text"
+            name="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <label htmlFor="description">Description:</label>
+          <input
+            required
+            type="text"
+            name="description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+          <button type="submit" className='button-19'>Submit</button>
+        </form>
+        <p>{error}</p>
+      </div>
     </div>
   );
 };

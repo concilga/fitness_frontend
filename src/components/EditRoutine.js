@@ -68,20 +68,22 @@ const EditRoutine = ({token, user, setPublicRoutines, publicRoutines}) => {
 
 
     return (
-        <div id='addPost-container'>
-            <div id='addPost-title'>
+        <div id='container'>
+            <div id='login-navbar'>
                 <h2>Please Edit the Information Below and Submit:</h2>
             </div>
-            <form className="addPost-form" onSubmit={handleSubmit}>
-              <label htmlFor='name'>Name of Routine:</label>
-              <input required type='text' name='name' value={name} 
-                onChange={(event) => setName(event.target.value)}/>
-              <label htmlFor='goal'>Description:</label>
-              <input required type='goal' name='goal' value={goal} 
-                onChange={(event) => setGoal(event.target.value)}/>
-              <button type='submit'>Submit</button>
-            </form>
-            <p>{error}</p>
+            <div className="login-form">
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor='name'>Name of Routine:</label>
+                    <input required type='text' name='name' value={name} 
+                        onChange={(event) => setName(event.target.value)}/>
+                    <label htmlFor='goal'>Description:</label>
+                    <input required type='goal' name='goal' value={goal} 
+                        onChange={(event) => setGoal(event.target.value)}/>
+                    <button type='submit' className='button-19'>Submit</button>
+                </form>
+                <p>{error}</p>
+            </div>
       </div>
     )
 }

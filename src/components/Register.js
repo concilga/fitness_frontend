@@ -57,17 +57,19 @@ const Register = ({setToken}) => {
       <div id='container'>
         <div id='login-navbar'>
           Register:
+        </div >
+        <div className="login-form">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor='username'>Username:</label>
+            <input required type='text' name='username' value={username} onChange={handleChange} />
+            <label htmlFor='password'>Password:</label>
+            <input required type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
+            <label htmlFor='confirm_password'>Confirm Password:</label>
+            <input required type='password' name='confirm_password' value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+            <p>{error}</p>
+            <button type='submit' className='button-19'>Submit</button>
+          </form>
         </div>
-            <form className="login-form" onSubmit={handleSubmit}>
-              <label htmlFor='username'>Username:</label>
-              <input required type='text' name='username' value={username} onChange={handleChange} />
-              <label htmlFor='password'>Password:</label>
-              <input required type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
-              <label htmlFor='confirm_password'>Confirm Password:</label>
-              <input required type='password' name='confirm_password' value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-              <p>{error}</p>
-              <button type='submit'>Submit</button>
-            </form>
       </div>
     )
 

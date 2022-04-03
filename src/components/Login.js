@@ -58,7 +58,7 @@ const Login = ({setToken}) => {
             <label htmlFor='password'>Password:</label>
             <input required type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
             <p>{checkLogin}</p>
-            <button type='submit'>Submit</button>
+            <button type='submit' className='button-19'>Submit</button>
           </form>
           <p>Haven't created an account yet?</p>
           {

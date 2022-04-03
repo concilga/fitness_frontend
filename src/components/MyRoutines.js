@@ -100,7 +100,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
       const info = await response.json();
 
       if(info.error) {
-          return setError(info.error.message);
+          return setError(info.error);
       }
 
       fetchRoutines();
@@ -114,7 +114,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
 
   return (
     <div className="routine-page">
-    <div className="routine-header">
+    <div className="my-routine-header">
         <h2>{displayUsername}'s Routines</h2>
         <form className="add-form">
             <label htmlFor='title'>Search:</label>
@@ -176,29 +176,29 @@ const MyRoutines = ({token, user, publicActivities})=> {
                         </div>
                       </div>
                       {displayActivDetail && routine.id === id ? (
-                        <div>
-                          <div id='addPost-container'>
-                            <div id='addPost-title'>
+                          <div id='activ-add-nonvis'>
+                            <div id='nonvis-title'>
                               <p>Please Fill Out the Information Below to Create a New Activity</p>
                             </div>
                             <form 
-                              className="addPost-form" 
+                              className="nonvis-form" 
                               onSubmit={(e) => {
                                 e.preventDefault()
                                 handleSubmit(routine.id)
                               }}
                             >
-                              <label htmlFor='duration'>Duration:</label>
-                              <input required type='text' name='duration' value={duration} 
-                                onChange={(event) => setDuration(event.target.value)}/>
-                              <label htmlFor='count'>Count:</label>
-                              <input required type='count' name='count' value={count} 
-                                onChange={(event) => setCount(event.target.value)}/>
+                              <div id="form-input">
+                                <label htmlFor='duration'>Duration:</label>
+                                <input required type='text' name='duration' value={duration} 
+                                  onChange={(event) => setDuration(event.target.value)}/>
+                                <label htmlFor='count'>Count:</label>
+                                <input required type='count' name='count' value={count} 
+                                  onChange={(event) => setCount(event.target.value)}/>
+                              </div>
                               <button type='submit'>Submit</button>
                             </form>
                             <p>{error}</p>
                           </div>
-                        </div>
                       ) : (
                         null                          
                       )}
@@ -217,8 +217,8 @@ const MyRoutines = ({token, user, publicActivities})=> {
                               <p id="description">Description: {activity.description}</p>
                               <p id="count">Count: {activity.count}</p>
                               <p id="duration">Duration: {activity.duration}</p>
-                              <button>
-                                <Link to={`/EditActivity/${activity.routineActivityId}`}>Edit</Link>
+                              <button id="edit-btn">
+                                <Link to={`/EditActivity/${activity.routineActivityId}`} id="edit-activ">Edit</Link>
                               </button>
                             </div>
                           );
@@ -233,7 +233,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
                   <div id="creator">
                     <p>Creator: {routine.creatorName}</p>
                     <button>
-                      <Link to={`/EditRoutine/${routine.id}`}>Edit</Link>
+                      <Link to={`/EditRoutine/${routine.id}`} id="edit-link">Edit</Link>
                     </button>
                   </div>
                 </div>

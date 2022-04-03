@@ -49,21 +49,23 @@ const AddRoutine = ({token, setPublicRoutines, user}) => {
 
 
     return (
-        <div id='addPost-container'>
-            <div id='addPost-title'>
+        <div id='container'>
+            <div id='login-navbar'>
                 <h2>Please Fill Out the Information Below to Create a New Routine!</h2>
             </div>
-            <form className="addPost-form" onSubmit={handleSubmit}>
-              <label htmlFor='name'>Name:</label>
-              <input required type='text' name='name' value={name} 
-                onChange={(event) => setName(event.target.value)}/>
-              <label htmlFor='goal'>Goal:</label>
-              <input required type='goal' name='goal' value={goal} 
-                onChange={(event) => setGoal(event.target.value)}/>
-              <button type='submit'>Submit</button>
-            </form>
-            <p>{error}</p>
-      </div>
+            <div className="login-form">
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor='name'>Name:</label>
+                    <input required type='text' name='name' value={name} 
+                        onChange={(event) => setName(event.target.value)}/>
+                    <label htmlFor='goal'>Goal:</label>
+                    <input required type='goal' name='goal' value={goal} 
+                        onChange={(event) => setGoal(event.target.value)}/>
+                    <button type='submit' className='button-19'>Submit</button>
+                </form>
+                <p>{error}</p>
+            </div>
+        </div>
     )
 }
 

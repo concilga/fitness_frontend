@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 const Navbar = ({token, setToken, setUser}) => {
     const body = document.body;
     let lastScroll = 0;
-
+    
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
 

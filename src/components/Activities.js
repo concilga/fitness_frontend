@@ -44,9 +44,9 @@ const Activities = ({ token, publicActivities, fetchActivities }) => {
   console.log("routines", routines);
   return (
     <div className="routine-page">
-      <div className="routine-header">
+      <div className="activity-header">
         <h2>Activities</h2>
-        <form className="add-activity-post-form">
+        <form className="add-form">
           <label htmlFor="title">Search:</label>
           <input
             required
