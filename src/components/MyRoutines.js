@@ -87,6 +87,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
       }
 
       fetchRoutines();
+      setActivityId(null);
       displayActivDetail = false;
     }
 
@@ -132,6 +133,7 @@ const MyRoutines = ({token, user, publicActivities})=> {
                         <h3>Activities:</h3>
                         <div id="menu"> 
                           <select
+                            id="selectActiv"
                             defaultValue="default"
                             required
                             onChange={(e) => {setActivityId(e.target.value);}}

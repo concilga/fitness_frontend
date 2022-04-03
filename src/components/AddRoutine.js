@@ -51,7 +51,7 @@ const AddRoutine = ({token, setPublicRoutines, user}) => {
     return (
         <div id='addPost-container'>
             <div id='addPost-title'>
-                <h2>Please Fill Out the Information Below to Create a New Post!</h2>
+                <h2>Please Fill Out the Information Below to Create a New Routine!</h2>
             </div>
             <form className="addPost-form" onSubmit={handleSubmit}>
               <label htmlFor='name'>Name:</label>
